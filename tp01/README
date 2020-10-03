@@ -123,76 +123,57 @@ Instructions
 Write-up for PA2
 ----------------
 
-
 A análise léxica inclui:
 
 Espaço em branco
+----------------
 
-O espaço em branco consiste em qualquer seqüência de caracteres: em branco (ascii 32), `\n' (nova linha, ascii 10), `\f' (alimentação de formulário, ascii 12), `\r' (retorno de carruagem, ascii 13), `\t' (aba, ascii 9), `\v' (aba vertical, ascii 11).
+O espaço em branco consiste em qualquer sequência de caracteres: em branco (ascii 32), \n (nova linha, ascii 10), \f (form feed, ascii 12), \r (retorno de carruagem, ascii 13), \t (tab, ascii 9), \v (tab vertical, ascii 11).
 
-Todos estes charaters são ignorados, exceto o charater da nova linha: `\n', que é necessário para a contagem dos números das linhas.
+Todos estes caracteres são ignorados, exceto o caractere da nova linha: \n, que é necessário para a contagem dos números das linhas.
 
 Comentários
-
-Há duas formas de comentários em Cool. Quaisquer caracteres entre dois traços `--' e o final desta linha são tratados como comentários (assim como `//' em C). Os comentários também podem ser escritos anexando texto em `(*``...`*)` (assim como `/*` e `*/` em C). Esta última forma de comentário pode ser aninhada. Os comentários não podem cruzar os limites dos arquivos.
-
-- Os comentários devem ser ignorados.
-- Se um comentário permanece aberto quando EOF é encontrado, informe este erro com a mensagem "EOF em comentário".
-- Se você ver `*)` fora de um comentário, informe este erro como "Unmatched \*)", em vez de assinalá-lo como `*` e `)`.
-
-Operadores e Separadores
-
-Retornar a si mesmo como um `char` se for um operador de um único carater ou Separador. Quanto aos outros com dois charaters, retornar o valor como é definido em 'cool-parse.h'.
+----------------
+Há duas formas de comentários em Cool. Quaisquer caracteres entre dois traços -- e o final da linha são tratados como comentários (assim como // em C). Os comentários também podem ser escritos anexando texto em (*...*) (assim como entre /* e */ em C). Esta última forma de comentário pode ser aninhada. Os comentários não podem cruzar os limites dos arquivos.
 
 Palavras-chave
+----------------
+As palavras-chave de cool são: class, else, false, fi, if, in, inherits, isvoid, let, loop, pool, then, while, case, esac, new, of, not, true. Exceto pelas constantes "verdadeiro" e "falso", as palavras-chave são insensíveis a maiúsculas e minúsculas. Para estar de acordo com as regras para outros objetos, a primeira letra de "verdadeiro" e "falso" deve ser minúscula; as letras minúsculas podem ser maiúsculas ou minúsculas.
 
-As palavras-chave de cool são: "classe", "luva", "falso", "fi", "se", "em", "in", "heróis", "ovóide", "luva", "piscina", "entao", "enquanto", "caixa", "saco", "novo", "de", "não", "verdadeiro". Exceto pelas constantes "verdadeiro" e "falso", as palavras-chave são insensíveis a maiúsculas e minúsculas. Para estar de acordo com as regras para outros objetos, a primeira letra de "verdadeiro" e "falso" deve ser minúscula; as letras minúsculas podem ser maiúsculas ou minúsculas.
+Strings
+----------------
+O tipo Char é inválido em cool. Tanto um charater quanto um string devem ser definidos como String. As strings são incluídas entre aspas duplas "...".
 
-Cordas
-
-O tipo `Char` é inválido no frio. Tanto um charater quanto um string devem ser definidos como "String". As cordas são incluídas entre aspas duplas `"`...`"`".
-
-- Se uma EOF for encontrada antes da citação fechada, informe este erro como "EOF em string constant".
-- Quando uma string é muito longa (exceder `MAX_STR_CONST`), informe este erro como "String constant too long".
-- Você deve retornar um erro como "String contains null character" para uma string contendo
-  o caráter literal nulo. Entretanto, a seqüência de dois caracteres ``0` é permitida, mas deve ser convertida para o único caractere ``0`, que representa o carater nulo.
-- Seu scanner deve converter os caracteres de escape em constantes de seqüência de caracteres para seus valores corretos.
-- Se uma cadeia de caracteres contém uma nova linha não contornada, informe esse erro como "Constante de cadeia não terminada" e retome a lexing no início da próxima linha.
-
-Exemplo de uma expressão invlidada:
-
+Exemplo de uma expressão inválida:
+------------------------------------------------
 bash
 //Inválido
-str = "123
-456";
-
+str = "789
+846";
 
 A expressão válida deve ser a seguinte:
-
+------------------------------------------------
 bash
 //Válido
-str = "123\n456";
-
+str = "789\n846";
 
 Isto também é válido:
-
+--------------------------------
 bash
 //Válido
-str = "123\\
-456";
+str = "789\\
+846";
 
 
 Inteiros
+----------------
+Os inteiros são strings não vazias de dígitos 0-9.
 
-Os inteiros são cordões não vazios de dígitos 0-9.
-
-#Identificadores
-
-Os identificadores são cordas (exceto palavras-chave) que consistem de letras, dígitos e o caractere sublinhado. Os identificadores de tipo começam com uma letra maiúscula; os identificadores de objeto começam com uma letra minúscula. Há dois outros identificadores, `self` e `SELF_TYPE` que são tratados especialmente por Cool, mas não são tratados como palavras-chave.
+Identificadores
+----------------
+Os identificadores são strings (exceto palavras-chave) que consistem de letras, dígitos e o caractere sublinhado. Os identificadores de tipo começam com uma letra maiúscula; os identificadores de objeto começam com uma letra minúscula. Há dois outros identificadores, self e SELF_TYPE que são tratados especialmente por Cool, mas não são tratados como palavras-chave.
 
 Outros
-
+----------------
 Basta devolver um erro com esta ficha.
 
-TODO: coisas a implementar
-tirar 3 coisas
