@@ -106,7 +106,6 @@ LE				<=
 "}"			{ return '}'; }
 "("			{ return '('; }
 ")"			{ return ')'; }
-"~"			{ return '~'; }
 ","			{ return ','; }
 ";"			{ return ';'; }
 ":"			{ return ':'; }
@@ -118,7 +117,6 @@ LE				<=
 "."			{ return '.'; }
 "<"			{ return '<'; }
 "="			{ return '='; }
-"@"			{ return '@'; }
 
  /*
   * Keywords are case-insensitive except for the values true and false,
@@ -133,23 +131,21 @@ LE				<=
 (?i:INHERITS)	{ return (INHERITS); }
 (?i:LET)		{ return (LET); }
 (?i:LOOP)		{ return (LOOP); }
-(?i:POOL)		{ return (POOL); }
 (?i:THEN)		{ return (THEN); }
 (?i:WHILE)		{ return (WHILE); }
 (?i:CASE)		{ return (CASE); }
-(?i:ESAC)		{ return (ESAC); }
 (?i:OF)			{ return (OF); }
 (?i:NEW)		{ return (NEW); }
 (?i:LE)			{ return (LE); }
 (?i:NOT)		{ return (NOT); }
 (?i:ISVOID)		{ return (ISVOID); }
 
-t[rR][uU][eE]		{ 
+true		{ 
 	cool_yylval.boolean = 1;
 	return (BOOL_CONST);
 }
 
-f[aA][lL][sS][eE]	{ 
+false	{ 
 	cool_yylval.boolean = 0;
 	return (BOOL_CONST);
 }
