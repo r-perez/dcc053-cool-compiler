@@ -177,10 +177,6 @@ Identificadores
 ----------------
 Os identificadores são strings (exceto palavras-chave) que consistem de letras, dígitos e o caractere sublinhado. Os identificadores de tipo começam com uma letra maiúscula; os identificadores de objeto começam com uma letra minúscula. Há dois outros identificadores, self e SELF_TYPE que são tratados especialmente por Cool, mas não são tratados como palavras-chave.
 
-Outros
-----------------
-Basta devolver um erro com esta ficha.
-
 Testes
 ----------------
 Fizemos um teste de string, o ola_mundo.cl
