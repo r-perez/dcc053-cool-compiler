@@ -123,6 +123,11 @@ Instructions
 Write-up for PA2
 ----------------
 
+Alunos
+----------------
+Rafael Augusto Botelho Perez - 2016006824
+Victor Marques Silva - 2013031259
+
 A análise léxica inclui:
 
 Espaço em branco
@@ -164,7 +169,6 @@ bash
 str = "789\\
 846";
 
-
 Inteiros
 ----------------
 Os inteiros são strings não vazias de dígitos 0-9.
@@ -177,3 +181,6 @@ Outros
 ----------------
 Basta devolver um erro com esta ficha.
 
+Testes
+----------------
+Fizemos um teste de string, o ola_mundo.cl
