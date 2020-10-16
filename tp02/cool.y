@@ -15,6 +15,7 @@ extern char *curr_filename;
   #define YYLTYPE int              
   #define cool_yylloc curr_lineno  
     
+	/* node line number */
     extern int node_lineno;
       
       
@@ -148,6 +149,7 @@ class	: CLASS TYPEID '{' dummy_feature_list '}' ';'
 				}
 				;
 
+  /* Formal list */
   formal_list : {
 					$$ = nil_Formals();
 				}
@@ -159,6 +161,7 @@ class	: CLASS TYPEID '{' dummy_feature_list '}' ';'
 				}
 				;
 
+  /* Expressions list */
   expression_listone : { /* empty */
 					$$ = nil_Expressions();
 				}
@@ -178,7 +181,8 @@ class	: CLASS TYPEID '{' dummy_feature_list '}' ';'
 				}
 				| error ';' { yyerrok; }
 				;
-
+  
+  /* Case list */
   case_list	: case {
 					$$ = single_Cases($1);
 				} 
@@ -187,6 +191,7 @@ class	: CLASS TYPEID '{' dummy_feature_list '}' ';'
 				}
 				;       
 
+  /* Feature */
   feature		: OBJECTID '(' formal_list ')' ':' TYPEID '{' expression '}' ';' {
 					$$ = method($1, $3, $6, $8);
 				}
@@ -196,6 +201,7 @@ class	: CLASS TYPEID '{' dummy_feature_list '}' ';'
 				| error ';' {}
 				;                
 
+  /* Expressions */
   expression	: OBJECTID ASSIGN expression {
 					$$ = assign($1, $3);
 				}
@@ -272,12 +278,13 @@ class	: CLASS TYPEID '{' dummy_feature_list '}' ';'
 					$$ = bool_const($1);
 				}
 				;      
-	
+	/* Formal */
 	formal		: OBJECTID ':' TYPEID {
 					$$ = formal($1, $3);
 				}
 				;      
 
+    /* Let */
 	let			: OBJECTID ':' TYPEID optional_assign IN expression %prec FLAG {
 					$$ = let($1, $3, $4, $6);
 				}
@@ -288,10 +295,12 @@ class	: CLASS TYPEID '{' dummy_feature_list '}' ';'
 				| error ',' let { yyerrok; }
 				;
 
+	/* Case */
 	case		: OBJECTID ':' TYPEID DARROW expression ';' {
 					$$ = branch($1, $3, $5);
 				}
 
+	/* Optional assign */
 	optional_assign : { /* empty */
 					$$ = no_expr();
 				}
@@ -308,6 +317,7 @@ void yyerror(char *s)
 {
   extern int curr_lineno;
 
+  /* Error reporting to cerr */
   cerr << "\"" << curr_filename << "\", line " << curr_lineno << ": " \
     << s << " at or near ";
   print_cool_token(yychar);
