@@ -180,4 +180,4 @@ Exemplo: Note essa definição de aba de classe-pai.
 
 cool-tree.h
 ----------
-Como normalmente, esse aqruivo contém as declarações de classes para os nós do AST, com implementações em cgen.cc.
+Como normalmente, esse arquivo contém as declarações de classes para os nós do AST, com implementações em cgen.cc.
