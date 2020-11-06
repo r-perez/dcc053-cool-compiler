@@ -152,3 +152,32 @@ Instructions
 Write-up for PA5
 ----------------
 
+Alunos
+----------------
+Rafael Augusto Botelho Perez - 2016006824
+Victor Marques Silva - 2013031259
+
+Em nosso trabalho, lemos o _The Cool Runtime System_ para nos familiarizar com os requisitos de projeto. Lá, pudemos observar os requisitos de checagem de erro em tempo de execução e coletor de lixo, como também testes e depuração. 
+
+O gerador de código
+------------------------------
+
+cgen.cc
+----------
+Aqui contém a maior parte do código do gerador de de código, que começa com o método program_class::cgen(ostream&), chamado na raiz do AST.
+Há esse vetor, por exemplo, onde o índice de cada classe neste vetor é sua etiqueta.
+std::vector<Class_> cls_ordered;
+
+Essa definição cuida de classe básica:
+#define is_basic_class(name) ((name) == Object || (name) == IO || \
+                              (name) == Str || (name) == Int || (name) == Bool)
+
+emit.h
+----------
+Esse arquivo contém várias macros.
+Exemplo: Note essa definição de aba de classe-pai.
+#define CLASSPARENTTAB       "class_parentTab"
+
+cool-tree.h
+----------
+Como normalmente, esse aqruivo contém as declarações de classes para os nós do AST, com implementações em cgen.cc.
